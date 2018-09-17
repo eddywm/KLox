@@ -30,16 +30,16 @@ object KLox {
 
 
     fun run(source: String?) {
-        val scanner: Scanner = Scanner(source)
-//        var tokens = scanner.scanTokens()
-//
-//        for (token in tokens) {
-//            System.out.println(token)
-//
-//            if(hadError) {
-//                System.exit(65)
-//            }
-//        }
+        val scanner: Scanner = io.eddywm.klox.Scanner(source)
+        val tokens = scanner.scanTokens()
+
+        for (token in tokens) {
+            System.out.println(token)
+
+            if(hadError) {
+                System.exit(65)
+            }
+        }
     }
 
 

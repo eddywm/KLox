@@ -1,1 +1,1 @@
-# KLox : A dynamically interpreted programming language written in Kotlin inspired by Bob's JLox
+### KLox : A dynamically interpreted programming language written in Kotlin under 2000 lines of code
