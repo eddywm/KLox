@@ -33,8 +33,7 @@ object KLox {
         val tokens = scanner.scanTokens()
 
         for (token in tokens) {
-            System.out.println(token)
-
+            println(token)
             if(hadError) {
                 System.exit(65)
             }

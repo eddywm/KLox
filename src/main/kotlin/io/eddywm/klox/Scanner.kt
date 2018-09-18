@@ -35,7 +35,7 @@ class Scanner(private var source: String) {
 
 
     fun scanTokens(): List<Token> {
-        if (!isAtEnd()) {
+        while (!isAtEnd()) {
             start = current
 
             scanToken()
@@ -100,13 +100,13 @@ class Scanner(private var source: String) {
 
         var tokenType = keywords[text]
 
-        if (tokenType == null ) tokenType = IDENTIFIER
+        if (tokenType == null) tokenType = IDENTIFIER
 
         addToken(tokenType)
     }
 
     private fun isAlphaNumeric(c: Char): Boolean {
-        return isAlphaNumeric(c) || isDigit(c)
+        return isAlpha(c) || isDigit(c)
     }
 
     private fun isAlpha(c: Char): Boolean {
