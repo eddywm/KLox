@@ -15,7 +15,9 @@ object KLox {
 
         while (true) {
             print("> ")
-            run(reader.readLine())
+            val source = reader.readLine()
+            if(source == "quit()") System.exit(0)
+            run(source)
             hadError = false
         }
     }
