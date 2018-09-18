@@ -1,7 +1,5 @@
 package io.eddywm.klox
 
-import org.omg.CORBA.Object
-
 
 data class Token(
         private val tokenType: TokenType,

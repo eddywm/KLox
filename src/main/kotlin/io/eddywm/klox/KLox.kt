@@ -22,13 +22,10 @@ object KLox {
         }
     }
 
-
-
     fun runFile(path: String) {
         val bytes: ByteArray = Files.readAllBytes(Paths.get(path))
         run(String(bytes, Charset.defaultCharset()))
     }
-
 
     private fun run(source: String) {
         val scanner = Scanner(source)

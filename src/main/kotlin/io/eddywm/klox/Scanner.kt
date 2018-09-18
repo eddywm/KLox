@@ -72,8 +72,7 @@ class Scanner(private var source: String) {
                 }
             }
 
-            ' ', '\r', '\t' -> {
-            }
+            ' ', '\r', '\t' -> {}
 
             '\n' -> line++
 
@@ -141,7 +140,7 @@ class Scanner(private var source: String) {
         advance()
 
         // Trim the " from the string value
-        var value = source.substring(start + 1, current - 1)
+        val value = source.substring(start + 1, current - 1)
         addToken(STRING, value)
     }
 
