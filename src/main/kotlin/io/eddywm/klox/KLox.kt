@@ -5,7 +5,6 @@ import java.io.InputStreamReader
 import java.nio.charset.Charset
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.util.*
 
 object KLox {
     var hadError = false
@@ -29,8 +28,8 @@ object KLox {
     }
 
 
-    fun run(source: String?) {
-        val scanner: Scanner = io.eddywm.klox.Scanner(source)
+    private fun run(source: String) {
+        val scanner = Scanner(source)
         val tokens = scanner.scanTokens()
 
         for (token in tokens) {
