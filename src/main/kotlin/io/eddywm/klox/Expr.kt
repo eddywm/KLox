@@ -8,7 +8,7 @@ abstract class Expr {
         fun visitUnaryExpr(expr: Unary): R
     }
 
-    class Binary internal constructor(internal val left: Expr, internal val operator: Token, internal val right: Expr) :
+    class Binary  constructor(internal val left: Expr, internal val operator: Token, internal val right: Expr) :
         Expr() {
 
         override fun <R> accept(visitor: Visitor<R>): R {
@@ -16,21 +16,21 @@ abstract class Expr {
         }
     }
 
-    class Grouping internal constructor(internal val expression: Expr) : Expr() {
+    class Grouping  constructor(internal val expression: Expr) : Expr() {
 
         override fun <R> accept(visitor: Visitor<R>): R {
             return visitor.visitGroupingExpr(this)
         }
     }
 
-    class Literal internal constructor(internal val value: Any) : Expr() {
+    class Literal  constructor(internal val value: Any ?) : Expr() {
 
         override fun <R> accept(visitor: Visitor<R>): R {
             return visitor.visitLiteralExpr(this)
         }
     }
 
-    class Unary internal constructor(internal val operator: Token, internal val right: Expr) : Expr() {
+    class Unary  constructor(internal val operator: Token, internal val right: Expr) : Expr() {
 
         override fun <R> accept(visitor: Visitor<R>): R {
             return visitor.visitUnaryExpr(this)

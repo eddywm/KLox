@@ -75,7 +75,7 @@ fun defineType(writer: PrintWriter, baseName: String, className: String, fieldLi
     writer.println("    public static class $className extends $baseName {")
 
     //Constructor
-    writer.println("        $className ( $fieldList ) {")
+    writer.println("        public $className ( $fieldList ) {")
 
     //Store params in the fields
     val fields = fieldList.split(", ")
