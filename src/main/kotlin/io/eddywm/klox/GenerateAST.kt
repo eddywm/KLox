@@ -33,10 +33,10 @@ fun defineAST(outputDir: String, baseName: String, types: List<String>) {
 
     writer.println("package gen ;")
     writer.println()
-    writer.println("import java.util.* ;")
+    writer.println("import io.eddywm.klox.Token ;")
     writer.println()
 
-    writer.println("abstract class $baseName {")
+    writer.println("public abstract class $baseName {")
 
     defineVisitor(writer, baseName, types)
 
@@ -48,7 +48,7 @@ fun defineAST(outputDir: String, baseName: String, types: List<String>) {
     }
     // Base accept method
     writer.println()
-    writer.println(" abstract <R> R accept (Visitor<R> visitor);")
+    writer.println("    abstract <R> R accept (Visitor<R> visitor);")
 
     writer.println("}")
 
@@ -59,11 +59,11 @@ fun defineAST(outputDir: String, baseName: String, types: List<String>) {
 
 fun defineVisitor(writer: PrintWriter, baseName: String, types: List<String>) {
 
-    writer.println("    interface Visitor<R> {")
+    writer.println("    public  interface Visitor<R> {")
 
     types.forEach { type ->
         val typeName = type.split(":")[0].trim()
-        writer.println(" R visit$typeName$baseName ( $typeName ${baseName.toLowerCase()} );")
+        writer.println("    R visit$typeName$baseName ( $typeName ${baseName.toLowerCase()} );")
     }
 
 
@@ -72,30 +72,30 @@ fun defineVisitor(writer: PrintWriter, baseName: String, types: List<String>) {
 }
 
 fun defineType(writer: PrintWriter, baseName: String, className: String, fieldList: String) {
-    writer.println(" static class $className extends $baseName {")
+    writer.println("    public static class $className extends $baseName {")
 
     //Constructor
-    writer.println(" $className ( $fieldList ) {")
+    writer.println("        $className ( $fieldList ) {")
 
     //Store params in the fields
     val fields = fieldList.split(", ")
 
     fields.forEach { field ->
         val name = field.split(" ")[1]
-        writer.println("this.$name = $name ;")
+        writer.println("            this.$name = $name ;")
     }
-    writer.println(" }")
+    writer.println("    }")
 
     // Visitor pattern
     writer.println()
-    writer.println("    <R> R accept(Visitor<R> visitor) {")
-    writer.println("      return visitor.visit$className$baseName(this);")
+    writer.println("    public <R> R accept (Visitor<R> visitor) {")
+    writer.println("        return visitor.visit$className$baseName(this);")
     writer.println("    }")
 
     //Fields
     writer.println()
     for (field in fields) {
-        writer.println(" final $field;")
+        writer.println("    final $field;")
     }
 
     writer.println(" }")
