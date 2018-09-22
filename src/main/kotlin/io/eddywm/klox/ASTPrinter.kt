@@ -1,5 +1,7 @@
 package io.eddywm.klox
 
+import java.util.*
+
 class ASTPrinter : Expr.Visitor<String> {
 
     fun print(expr: Expr): String {
@@ -7,7 +9,7 @@ class ASTPrinter : Expr.Visitor<String> {
     }
 
     override fun visitBinaryExpr(expr: Expr.Binary): String {
-        return  parenthesize(expr.operator.lexeme, expr.left , expr.right)
+        return parenthesize(expr.operator.lexeme, expr.left, expr.right)
     }
 
     override fun visitGroupingExpr(expr: Expr.Grouping): String {
@@ -15,7 +17,7 @@ class ASTPrinter : Expr.Visitor<String> {
     }
 
     override fun visitLiteralExpr(expr: Expr.Literal): String {
-        if (expr.value == null) return  "nil"
+        if (expr.value == null) return "nil"
         return expr.value.toString()
     }
 
@@ -29,7 +31,7 @@ class ASTPrinter : Expr.Visitor<String> {
         val builder = StringBuilder()
         builder.append("(").append(name)
 
-        exprs.forEach {expr->
+        exprs.forEach { expr ->
             builder.append(" ")
             builder.append(expr.accept(this))
         }
@@ -38,6 +40,7 @@ class ASTPrinter : Expr.Visitor<String> {
         return builder.toString()
     }
 }
+
 
 fun main(args: Array<String>) {
     val expr = Expr.Binary(

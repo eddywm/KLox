@@ -1,6 +1,7 @@
 package io.eddywm.klox
 
 abstract class Expr {
+
     interface Visitor<R> {
         fun visitBinaryExpr(expr: Binary): R
         fun visitGroupingExpr(expr: Grouping): R
